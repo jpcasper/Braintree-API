@@ -1,0 +1,25 @@
+== README
+After setting up my app I had to include two gems in my Gemfile:
+gem 'dotenv', '~> 2.1', '>= 2.1.1' - for my API keys
+gem "braintree", "~> 2.68.2" - Braintree's gem
+
+I then set up my .env file for the API credentials I received after signing up for sandbox
+
+Then within the inializers I set up the braintree.rb file to access the keys in the .env file
+
+I decided to set up the server side first. This way I could makes test pages for the views to make sure the routes were working correctly before I set up the client. I set up the controller and views with test code. When I got that to work I replaced my test code with the server code from the documentation. The set up instructions on the website were straight forward and easy to follow.
+
+I decided to root to the localhost:3000 to keep it simple. That way you do not have to type in an address. As soon as you run the server it would open up to the hosted field.
+
+I set up the client side next. I actually had a little bit of trouble at first because I used the wrong source code from the documentation (I used the code with braintree.client.create instead of braintree.setup), but once I put the correct hosted fields example in my code it was fairly easy to get it working. Once I interpolated the token into the braintree.setup and added the correct route in the form it worked with no problem.
+
+To deploy the app:
+  in your terminal cd into the folder containing the file (braintree-api)
+  run the rails server by typing rails s (I used rails version 4.2.6 and ruby version 2.2.0)
+  open a webpage and type localhost:3000 as the web address
+  a hosted field will come up
+  for the credit card number enter 4111111111111111
+  for the cvv enter any three digit number
+  for the date expiration date enter any date in the future
+  click on the pay $10 button to submit
+Once you click submit it will route you to the payments page. If the transaction was successful you will get a message that says Success! If the transaction failed, you will get a message that says Declined! 
